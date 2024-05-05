@@ -58,6 +58,5 @@ fn main() {
         "ipv4" => payload_obf.ipv4(),
         _ => panic!("[Error] Unknown obfuscation type: {}", args.obfuscation),
     };
-
     write_file(payload_obf.obfuscated_data,&args.output);
 }
