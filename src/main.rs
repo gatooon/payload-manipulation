@@ -7,6 +7,7 @@ mod encryption{
 mod obfuscation{
     pub mod obfuscation;
     pub mod ipv4;
+    pub mod ipv6;
 }
 mod utilities{
     pub mod utilities;
@@ -15,7 +16,6 @@ mod utilities{
 use crate::utilities::utilities::{read_file, write_file};
 use crate::encryption::encryption::Encryption;
 use crate::obfuscation::obfuscation::Obfuscation;
-use std::str;
 use clap::Parser;
 
 #[derive(Parser, Debug)]
@@ -52,10 +52,12 @@ fn main() {
         "rc4_winapi" => payload_crpt.rc4_winapi(&args.key),
         _ => panic!("[Error] Unknown encryption type: {}", args.encryption),
     };
+    println!("{:?}", payload_crpt.encrypted_data);
 
     let mut payload_obf = Obfuscation::new(payload_crpt.encrypted_data);
     match args.obfuscation.as_str() {
         "ipv4" => payload_obf.ipv4(),
+        "ipv6" => payload_obf.ipv6(),
         _ => panic!("[Error] Unknown obfuscation type: {}", args.obfuscation),
     };
     write_file(payload_obf.obfuscated_data,&args.output);

@@ -1,4 +1,5 @@
 use crate::obfuscation::ipv4::ipv4_obfuscation;
+use crate::obfuscation::ipv6::ipv6_obfuscation;
 
 use super::ipv4::ipv4_unobfuscation;
 pub struct Obfuscation{
@@ -22,5 +23,7 @@ impl Obfuscation{
         self.obfuscated_data = ipv4_unobfuscation(&self.raw_data);
     }
 
-    
+    pub fn ipv6(&mut self){
+        self.obfuscated_data = ipv6_obfuscation(&self.raw_data);
+    }
 }

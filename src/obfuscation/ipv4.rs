@@ -1,10 +1,9 @@
 use std::net::Ipv4Addr;
-use rand::Rng;
+use crate::utilities::utilities::gen_random;
 
 pub fn ipv4_obfuscation(payload: &Vec<u8>) -> Vec<u8>{
     let mut output_payload = vec![];
     let mut i = 0;
-    let mut random = rand::thread_rng();
     while i + 4 < payload.len(){
         output_payload.push(Ipv4Addr::new(payload[i], payload[i+1], payload[i+2], payload[i+3]).to_string());
         i += 4;
@@ -50,10 +49,7 @@ pub fn ipv4_unobfuscation(obfuscated: &Vec<u8>) -> Vec<u8>{
     return output_payload;
 }
 
-fn gen_random(range: u8) -> u8{
-    let mut random = rand::thread_rng();
-    return random.gen_range(0..=range);
-}
+
 
 fn obf_padding(padding: usize) -> u8{
     return format!("{}{}", gen_random(23), padding).parse::<u8>().unwrap();
