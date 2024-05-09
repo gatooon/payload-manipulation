@@ -53,11 +53,11 @@ fn main() {
         _ => panic!("[Error] Unknown encryption type: {}", args.encryption),
     };
 
-    let mut payload_obf = Obfuscation::new(payload_crpt.encrypted_data);
+    let mut payload_obf = Obfuscation::new(payload_crpt.altered_data);
     match args.obfuscation.as_str() {
         "ipv4" => payload_obf.ipv4(),
         "ipv6" => payload_obf.ipv6(),
         _ => panic!("[Error] Unknown obfuscation type: {}", args.obfuscation),
     };
-    write_file(payload_obf.obfuscated_data,&args.output);
+    write_file(payload_obf.altered_data,&args.output);
 }
