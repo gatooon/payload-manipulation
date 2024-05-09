@@ -2,6 +2,7 @@ use crate::obfuscation::ipv4::ipv4_obfuscation;
 use crate::obfuscation::ipv6::ipv6_obfuscation;
 
 use super::ipv4::ipv4_unobfuscation;
+use super::ipv6::ipv6_unobfuscation;
 pub struct Obfuscation{
     pub raw_data: Vec<u8>,
     pub obfuscated_data: Vec<u8>,
@@ -25,5 +26,9 @@ impl Obfuscation{
 
     pub fn ipv6(&mut self){
         self.obfuscated_data = ipv6_obfuscation(&self.raw_data);
+    }
+
+    pub fn ipv6_undo(&mut self){
+        self.obfuscated_data = ipv6_unobfuscation(&self.raw_data);
     }
 }

@@ -52,7 +52,6 @@ fn main() {
         "rc4_winapi" => payload_crpt.rc4_winapi(&args.key),
         _ => panic!("[Error] Unknown encryption type: {}", args.encryption),
     };
-    println!("{:?}", payload_crpt.encrypted_data);
 
     let mut payload_obf = Obfuscation::new(payload_crpt.encrypted_data);
     match args.obfuscation.as_str() {

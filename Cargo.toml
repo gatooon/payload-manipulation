@@ -10,3 +10,4 @@ clap = { version = "4.5.4", features = ["derive"] }
 rand = "0.8.5"
 rc4 = "0.1.0"
 winapi = {version = "0.3.9", features = ["winbase","winuser"]}
+hex = "0.4.3"
