@@ -47,10 +47,8 @@ pub fn ipv6_unobfuscation(obfuscated: &Vec<u8>) -> Vec<u8>{
 
     for ip in string_splitted.iter() {
         let ipv6 = ip.parse::<Ipv6Addr>().unwrap().octets();
-        println!("{:?}", ipv6);
         if i == 0 {
             padding = ipv6[5] as usize;
-            println!("{:?}", padding);
             i += 1;
             continue;
         }
